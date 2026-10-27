@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f5f7fa;
+  --foreground: #0b1b33;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+.dark {
+  --background: #0b1424;
+  --foreground: #e7ecf5;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Voice assistant — same idea as css-quest, colours matched to Bharat Bank */
+.voice-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+.voice-dock.above-nav { bottom: 92px; }
+.voice-dock.at-top { bottom: auto; top: 14px; }
+.voice-dock > * { pointer-events: auto; }
+
+.voice-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 12px;
+  background: rgba(11, 27, 51, 0.94);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  color: #fff;
+}
+.voice-pill.live { border-color: #22c55e; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28), 0 0 24px rgba(34, 197, 94, 0.35); }
+.voice-pill.busy { border-color: #f59e0b; }
+
+.voice-main {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(135deg, #0f766e, #2dd4bf);
+  color: #fff;
+  font-size: 20px;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.voice-pill.live .voice-main { background: linear-gradient(135deg, #ef4444, #f43f5e); }
+.voice-pill.busy .voice-main { background: linear-gradient(135deg, #f59e0b, #f97316); }
+.voice-icon { position: relative; z-index: 1; }
+.voice-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  z-index: 0;
+  opacity: 0.45;
+}
+.voice-pill.live .voice-ring { transform: scale(calc(1 + var(--level, 0) * 0.85)); transition: transform 0.1s linear; }
+.voice-label { font-weight: 700; font-size: 14px; white-space: nowrap; }
+.voice-mute {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
+.link-dot { width: 9px; height: 9px; border-radius: 50%; background: #64748b; flex: none; }
+.link-dot.on { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.voice-error {
+  max-width: min(420px, 92vw);
+  background: #3b0d17;
+  border: 1px solid #f43f5e;
+  color: #fecdd3;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.voice-error button { background: none; border: 0; color: inherit; cursor: pointer; }
+
+.ghost-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 55;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+}
+.ghost-cursor.show { opacity: 1; }
+.ghost-cursor svg { display: block; margin: -3px 0 0 -3px; }
+.ghost-cursor b {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  font-size: 11px;
+  color: #fff;
+  background: linear-gradient(135deg, #0f766e, #14b8a6);
+  padding: 2px 8px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+.gc-ring {
+  position: absolute;
+  left: -14px;
+  top: -14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid #2dd4bf;
+  animation: gcRing 0.5s ease-out forwards;
+}
+@keyframes gcRing { from { transform: scale(0.4); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
+.ui-glow { border-radius: 12px; animation: uiGlow 1.6s ease-out; }
+@keyframes uiGlow {
+  0%, 60% { box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.8), 0 0 24px rgba(45, 212, 191, 0.45); }
+  100% { box-shadow: 0 0 0 0 rgba(45, 212, 191, 0); }
+}
+.guide-banner {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 56;
+  background: rgba(11, 27, 51, 0.95);
+  border: 1px solid #2dd4bf;
+  color: #ccfbf1;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 7px 16px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.guide-dot { width: 9px; height: 9px; border-radius: 50%; background: #2dd4bf; }
