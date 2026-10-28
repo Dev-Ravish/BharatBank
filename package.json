@@ -11,10 +11,17 @@
     "start": "next start",
     "lint": "eslint",
     "knowledge": "tsx scripts/generate-knowledge.ts",
-    "tool": "tsx scripts/generate-tool-json.ts"
+    "tool": "tsx scripts/generate-tool-json.ts",
+    "cap:sync": "cap sync",
+    "cap:android": "cap open android",
+    "cap:ios": "cap open ios"
   },
   "dependencies": {
     "@bolna/web-call": "^3.0.1",
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3",
     "next": "16.4.3",
     "react": "19.3.0",
     "react-dom": "19.3.0"
@@ -24,10 +31,10 @@
     "@types/node": "^24.19.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "tsx": "^4.23.15",
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }
