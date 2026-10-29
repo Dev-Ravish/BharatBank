@@ -125,7 +125,7 @@ export default function TransferPage() {
 
   if (step === "review") {
     return (
-      <AppShell title="Review transfer" backHref="/payments">
+      <AppShell title="Review transfer" backHref="/payments" onBack={() => setStep("form")}>
         <div className="space-y-4 p-4">
           <div className="space-y-2 rounded-xl bg-white p-4 text-sm shadow-sm dark:bg-slate-800">
             <div className="flex justify-between">

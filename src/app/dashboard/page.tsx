@@ -23,7 +23,7 @@ const QUICK_ACTIONS = [
   { href: "/products/fd", label: "Deposits", icon: "₹", guide: "qa-deposits" },
   { href: "/products/loans", label: "Loans", icon: "🏦", guide: "qa-loans" },
   { href: "/products/investments", label: "Investments", icon: "📈", guide: "qa-investments" },
-  { href: "/products", label: "Offers", icon: "★", guide: "qa-offers" },
+  { href: "/offers", label: "Offers & Rewards", icon: "★", guide: "qa-offers" },
 ];
 
 const inr = (n: number) => n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });

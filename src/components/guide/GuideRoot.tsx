@@ -6,7 +6,7 @@ import GhostCursor from "./GhostCursor";
 import VoiceDock from "./VoiceDock";
 import { useGuide } from "./useGuide";
 
-const NAV_PREFIXES = ["/dashboard", "/payments", "/products", "/account", "/profile", "/assistant"];
+const NAV_PREFIXES = ["/dashboard", "/payments", "/products", "/account", "/profile"];
 
 function readControls() {
   return [...document.querySelectorAll<HTMLElement>("[data-guide]")].filter((el) => el.dataset.secret !== "true").map((el) => {

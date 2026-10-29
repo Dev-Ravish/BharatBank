@@ -1,16 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import AppShell from "@/components/AppShell";
-
-const PRODUCTS = [
-  { name: "Mutual Funds", blurb: "Market-linked funds across equity, debt, and hybrid categories." },
-  { name: "SIP", blurb: "Invest a fixed amount every month into a fund of your choice." },
-  { name: "Fixed Income", blurb: "Government and corporate bonds with predictable returns." },
-  { name: "PPF", blurb: "Public Provident Fund — long-term, tax-advantaged savings." },
-  { name: "NPS", blurb: "National Pension System for retirement planning." },
-  { name: "Gold", blurb: "Digital gold and sovereign gold bonds." },
-];
+import { INVESTMENT_PRODUCTS } from "@/lib/products";
 
 export default function InvestmentsPage() {
   const [amount, setAmount] = useState("5000");
@@ -69,11 +62,15 @@ export default function InvestmentsPage() {
         </div>
 
         <div className="space-y-3">
-          {PRODUCTS.map((p) => (
-            <div key={p.name} className="rounded-xl bg-white p-4 shadow-sm dark:bg-slate-800">
+          {INVESTMENT_PRODUCTS.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/products/investments/${p.slug}`}
+              className="block rounded-xl bg-white p-4 shadow-sm dark:bg-slate-800"
+            >
               <p className="text-sm font-medium text-slate-900 dark:text-white">{p.name}</p>
               <p className="text-xs text-slate-500 dark:text-slate-400">{p.blurb}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

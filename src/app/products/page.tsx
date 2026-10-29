@@ -14,7 +14,7 @@ const ITEMS = [
 export default function ProductsHub() {
   return (
     <AppShell title="Products">
-      <div className="space-y-3 p-4">
+      <div className="space-y-4 p-4">
         {ITEMS.map((item) => (
           <Link
             key={item.href}

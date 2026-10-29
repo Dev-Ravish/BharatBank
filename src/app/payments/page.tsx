@@ -11,7 +11,7 @@ const ITEMS = [
 export default function PaymentsHub() {
   return (
     <AppShell title="Payments">
-      <div className="space-y-3 p-4">
+      <div className="space-y-4 p-4">
         {ITEMS.map((item) => (
           <Link
             key={item.href}

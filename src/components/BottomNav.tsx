@@ -7,7 +7,6 @@ const TABS = [
   { href: "/dashboard", label: "Home", icon: "⌂" },
   { href: "/payments", label: "Payments", icon: "↗" },
   { href: "/products", label: "Products", icon: "▦" },
-  { href: "/assistant", label: "Assistant", icon: "◎" },
   { href: "/profile", label: "Profile", icon: "☺" },
 ];
 

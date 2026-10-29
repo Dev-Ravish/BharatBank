@@ -33,7 +33,6 @@ export const globalControls: ControlDef[] = [
   { id: "tab-home", label: "Home tab", kind: "button", href: "/dashboard" },
   { id: "tab-payments", label: "Payments tab", kind: "button", href: "/payments" },
   { id: "tab-products", label: "Products tab", kind: "button", href: "/products" },
-  { id: "tab-assistant", label: "Assistant tab", kind: "button", href: "/assistant" },
   { id: "tab-profile", label: "Profile tab", kind: "button", href: "/profile" },
 ];
 
@@ -92,7 +91,7 @@ export const screens: ScreenDef[] = [
       { id: "qa-deposits", label: "Deposits", kind: "button", href: "/products/fd" },
       { id: "qa-loans", label: "Loans", kind: "button", href: "/products/loans" },
       { id: "qa-investments", label: "Investments", kind: "button", href: "/products/investments" },
-      { id: "qa-offers", label: "Offers", kind: "button", href: "/products" },
+      { id: "qa-offers", label: "Offers & Rewards", kind: "button", href: "/offers" },
     ],
   },
   {
@@ -351,15 +350,6 @@ export const screens: ScreenDef[] = [
       { id: "statement-debit", label: "Debits only", kind: "button" },
       { id: "download-statement", label: "Download statement", kind: "button" },
     ],
-  },
-  {
-    id: "assistant",
-    path: "/assistant",
-    title: "Assistant",
-    aliases: ["assistant", "voice", "help"],
-    about:
-      "This page introduces the voice assistant. The talk button itself floats on every screen, not only here. You are that assistant. You can open any screen and operate it.",
-    controls: [],
   },
 ];
 

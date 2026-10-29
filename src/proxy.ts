@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { COOKIE_NAME } from "@/lib/session";
 
-const PROTECTED_PATHS = ["/dashboard", "/payments", "/products", "/account", "/profile", "/assistant"];
+const PROTECTED_PATHS = ["/dashboard", "/payments", "/products", "/account", "/profile"];
 
 export function proxy(req: NextRequest) {
   const session = req.cookies.get(COOKIE_NAME)?.value;
@@ -25,6 +25,5 @@ export const config = {
     "/products/:path*",
     "/account/:path*",
     "/profile/:path*",
-    "/assistant/:path*",
   ],
 };

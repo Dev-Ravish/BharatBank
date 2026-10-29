@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import AppShell from "@/components/AppShell";
 import { InfoSection } from "@/components/InfoSection";
+import { useStepUp } from "@/components/StepUp";
 
 type Biller = { id: string; name: string; category: string };
 type BillPayment = {
@@ -16,6 +17,7 @@ type BillPayment = {
 };
 
 export default function BillsPage() {
+  const { requestStepUp, modal } = useStepUp();
   const [billers, setBillers] = useState<Biller[]>([]);
   const [history, setHistory] = useState<BillPayment[]>([]);
   const [search, setSearch] = useState("");
@@ -50,32 +52,34 @@ export default function BillsPage() {
     setAmount(String(mock));
   }
 
-  async function handlePay(e: React.FormEvent) {
+  function handlePay(e: React.FormEvent) {
     e.preventDefault();
     setMessage(null);
-    setLoading(true);
-    try {
-      const res = await fetch("/api/bills/pay", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ billerId, consumerNumber, amount, scheduledFor: scheduledFor || null, autopay }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setMessage({ type: "error", text: data.error ?? "Payment failed" });
-        return;
+    requestStepUp(async () => {
+      setLoading(true);
+      try {
+        const res = await fetch("/api/bills/pay", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ billerId, consumerNumber, amount, scheduledFor: scheduledFor || null, autopay }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setMessage({ type: "error", text: data.error ?? "Payment failed" });
+          return;
+        }
+        setMessage({
+          type: "success",
+          text: scheduledFor ? `Payment scheduled for ${scheduledFor}.` : "Bill paid successfully.",
+        });
+        setConsumerNumber("");
+        setAmount("");
+        setScheduledFor("");
+        refresh();
+      } finally {
+        setLoading(false);
       }
-      setMessage({
-        type: "success",
-        text: scheduledFor ? `Payment scheduled for ${scheduledFor}.` : "Bill paid successfully.",
-      });
-      setConsumerNumber("");
-      setAmount("");
-      setScheduledFor("");
-      refresh();
-    } finally {
-      setLoading(false);
-    }
+    });
   }
 
   return (
@@ -185,6 +189,7 @@ export default function BillsPage() {
           </ul>
         </InfoSection>
       </div>
+      {modal}
     </AppShell>
   );
 }
