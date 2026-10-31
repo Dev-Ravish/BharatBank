@@ -41,7 +41,7 @@ The tunnel hostname changes every time cloudflared restarts. Re-run `npm run too
 
 ## 3. Try it
 
-Open the app, sign in (the login card shows the demo mobile and MPIN — type the MPIN yourself), and tap **Talk to Bharat**. The green dot on the pill means the screen link is connected.
+Open the app, sign in (the login card shows the demo mobile and MPIN — type the MPIN yourself), and tap **Talk to Saarthi**. The green dot on the pill means the screen link is connected.
 
 Say: “Show me my balance.” Then: “Transfer five hundred rupees to Rahul by UPI.” Bharat should open Transfer, fill it, and stop at the MPIN sheet unless you clearly asked it to finish. Type the MPIN on the sheet.
 

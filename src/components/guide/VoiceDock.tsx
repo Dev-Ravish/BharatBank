@@ -81,7 +81,7 @@ export default function VoiceDock({ userData, linked, aboveNav, atTop }: Props) 
 
   const busy = state === "connecting" || state === "ringing";
   const live = state === "active";
-  const label = busy ? (state === "ringing" ? "Ringing…" : "Connecting…") : live ? (muted ? "Muted" : "Listening…") : "Talk to Bharat";
+  const label = busy ? (state === "ringing" ? "Ringing…" : "Connecting…") : live ? (muted ? "Muted" : "Listening…") : "Talk to Saarthi";
 
   return (
     <div className={`voice-dock${aboveNav ? " above-nav" : ""}${atTop ? " at-top" : ""}`} role="region" aria-label="Voice assistant">
