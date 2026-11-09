@@ -61,6 +61,10 @@ const normalizeAction = (a: string) => {
     where: "where",
     read: "where",
     look: "where",
+    gesture: "gesture",
+    express: "gesture",
+    face: "gesture",
+    mood: "gesture",
   };
   return map[x];
 };
@@ -164,7 +168,10 @@ function uniqueControl(pool: ControlDef[], raw: string): { control?: ControlDef;
 export function plan(input: { action?: string; target?: string; value?: string }, start: UIState): PlanResult {
   const action = normalizeAction(input.action ?? "");
   if (!action) {
-    return { ok: false, error: `Unknown action "${input.action}". Use open, set, press, highlight, or where.` };
+    return { ok: false, error: `Unknown action "${input.action}". Use open, set, press, highlight, where, or gesture.` };
+  }
+  if (action === "gesture") {
+    return { ok: true, steps: [], state: start, warnings: [], stepUp: false };
   }
   if (isSecret(input.target ?? "") || isSecret(input.value ?? "")) {
     return { ok: false, error: "Refusing to enter a PIN, password, OTP, or id number. Ask the customer to type it on the screen, and never ask them to say it aloud." };

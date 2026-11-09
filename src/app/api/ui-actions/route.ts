@@ -4,6 +4,7 @@
 
 import { connection } from "next/server";
 import { describeState, plan } from "@/lib/guide/actions";
+import { isGestureAction, parseGesture, ROBOT_GESTURES } from "@/lib/guide/gesture";
 import { addLog, cleanSid, connectedSessions, getSession, publish } from "@/lib/guide/hub";
 
 const json = (body: unknown, status = 200) =>
@@ -66,24 +67,37 @@ async function handle(req: Request) {
     result = { ok: false, error: picked.error };
   } else {
     const session = getSession(picked.sid)!;
+    const gesture = parseGesture(params.gesture);
+    if (isGestureAction(params.action) && !gesture) {
+      publish(picked.sid, "action", { steps: [], gesture: "error" });
+      result = {
+        ok: false,
+        error: `gesture must be one of: ${ROBOT_GESTURES.join(", ")}.`,
+        hint: [...ROBOT_GESTURES],
+      };
+    } else {
     const p = plan({ action: params.action, target: params.target, value: params.value }, session.state);
     if (!p.ok) {
+      publish(picked.sid, "action", { steps: [], gesture: "error" });
       result = { ok: false, error: p.error, ...(p.hint ? { hint: p.hint } : {}), ...describeState(session.state) };
     } else {
       session.state = p.state;
       session.lastPlanAt = Date.now();
-      if (p.steps.length) publish(picked.sid, "action", { steps: p.steps });
+      if (p.steps.length || gesture) publish(picked.sid, "action", { steps: p.steps, gesture });
       result = {
         ok: true,
         note: p.steps.length
-          ? "The screen is animating this now. Describe what you asked it to do. Do not claim money has moved until a later result shows a receipt or success message."
-          : "Nothing moved. Here is what is on screen.",
+          ? "The screen is animating this now. The robot face follows the step. Describe what you asked it to do. Do not claim money has moved until a later result shows a receipt or success message."
+          : gesture
+            ? `The robot is showing ${gesture}. Say what that means in one short sentence. Do not say the gesture name.`
+            : "Nothing moved. Here is what is on screen.",
         ...(p.stepUp
           ? { mpin: "An MPIN sheet will appear. Tell the customer to type their 6-digit MPIN and tap Confirm. Never ask them to say the MPIN, and never type it." }
           : {}),
         ...(p.warnings.length ? { warnings: p.warnings } : {}),
         ...describeState(p.state),
       };
+    }
     }
   }
 

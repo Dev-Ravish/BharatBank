@@ -77,11 +77,13 @@ export default function GuideRoot() {
 
   return (
     <>
-      <GhostCursor cursor={guide.cursor} busy={guide.busy} />
+      <GhostCursor cursor={guide.cursor} />
       <VoiceDock
         linked={guide.linked}
         aboveNav={aboveNav}
         atTop={mpinOpen}
+        guideLine={guide.line}
+        guideFace={guide.face}
         userData={{
           session_id: sid || "none",
           current_screen: pathname,

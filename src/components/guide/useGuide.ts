@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { CursorState } from "./GhostCursor";
 import type { Step } from "@/lib/guide/actions";
+import { gestureForStep, type RobotGesture } from "@/lib/guide/gesture";
 
 export type GuideApi = {
   getPath: () => string;
@@ -70,6 +71,42 @@ function truthy(value: string) {
   return /^(1|true|yes|on|check|checked)$/i.test(value.trim());
 }
 
+function faceLine(gesture: RobotGesture): string | null {
+  switch (gesture) {
+    case "error":
+      return "That didn't work. I'll try another way.";
+    case "happy":
+      return "That's done.";
+    case "thinking":
+      return "One moment.";
+    case "searching":
+      return "Looking that up.";
+    case "working":
+      return "Doing that now.";
+    case "listening":
+      return "I'm listening.";
+    case "speaking":
+      return "Here it is.";
+    case "sleeping":
+      return "I'll wait quietly.";
+    default:
+      return null;
+  }
+}
+
+function caption(step: Step): string {
+  switch (step.type) {
+    case "navigate":
+      return `Opening ${step.title}.`;
+    case "highlight":
+      return "Right over here.";
+    case "set":
+      return "Filling that in for you.";
+    case "press":
+      return step.stepUp ? "Your turn for the mPIN. I won't type it." : "Tapping that for you.";
+  }
+}
+
 function applyValue(el: HTMLElement, value: string) {
   if (el.dataset.secret === "true") return false;
   if (el instanceof HTMLSelectElement) {
@@ -116,12 +153,27 @@ export function useGuide(api: GuideApi, sid: string) {
   const [cursor, setCursor] = useState<CursorState>({ x: 40, y: 40, visible: false, click: 0 });
   const [busy, setBusy] = useState(false);
   const [linked, setLinked] = useState(false);
+  const [line, setLine] = useState<string | null>(null);
+  const [face, setFace] = useState<RobotGesture | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     const queue: Step[] = [];
     let running = false;
     let hideTimer: ReturnType<typeof setTimeout> | undefined;
+    let lineTimer: ReturnType<typeof setTimeout> | undefined;
+    let faceTimer: ReturnType<typeof setTimeout> | undefined;
+    let explicit: RobotGesture | null = null;
+
+    const showFace = (gesture: RobotGesture | null, holdMs?: number) => {
+      setFace(gesture);
+      clearTimeout(faceTimer);
+      if (gesture && holdMs) {
+        faceTimer = setTimeout(() => {
+          if (!cancelled) setFace(null);
+        }, holdMs);
+      }
+    };
 
     const moveTo = async (x: number, y: number, ms = 550) => {
       setCursor((c) => ({ ...c, x, y, visible: true }));
@@ -206,8 +258,18 @@ export function useGuide(api: GuideApi, sid: string) {
       running = true;
       setBusy(true);
       clearTimeout(hideTimer);
+      clearTimeout(lineTimer);
+      clearTimeout(faceTimer);
+      let acted = false;
+      let waitedForPin = false;
       while (queue.length && !cancelled) {
         const step = queue.shift()!;
+        if (step.type === "press" && step.stepUp) waitedForPin = true;
+        else if (step.type === "set" || step.type === "press") acted = true;
+        if (!cancelled) {
+          setLine(caption(step));
+          setFace(explicit ?? gestureForStep(step));
+        }
         try {
           await run(step);
         } catch (e) {
@@ -216,7 +278,21 @@ export function useGuide(api: GuideApi, sid: string) {
       }
       running = false;
       setBusy(false);
+      if (queue.length && !cancelled) {
+        void drain();
+        return;
+      }
+      const named = explicit;
+      explicit = null;
       hideTimer = setTimeout(() => setCursor((c) => ({ ...c, visible: false })), 2500);
+      lineTimer = setTimeout(() => {
+        if (!cancelled) setLine(null);
+      }, 1900);
+      if (cancelled) return;
+      if (named) showFace(named, 1800);
+      else if (waitedForPin) showFace("thinking", 4000);
+      else if (acted) showFace("happy", 1500);
+      else showFace(null);
     };
 
     if (!sid) return;
@@ -224,9 +300,28 @@ export function useGuide(api: GuideApi, sid: string) {
     es.addEventListener("hello", () => setLinked(true));
     es.addEventListener("action", (ev) => {
       try {
-        const { steps } = JSON.parse((ev as MessageEvent).data) as { steps: Step[] };
-        queue.push(...steps);
-        void drain();
+        const data = JSON.parse((ev as MessageEvent).data) as { steps?: Step[]; gesture?: RobotGesture | null };
+        const steps = data.steps ?? [];
+        const gesture = data.gesture ?? null;
+        if (steps.length) {
+          explicit = gesture;
+          queue.push(...steps);
+          void drain();
+          return;
+        }
+        if (!gesture) return;
+        explicit = null;
+        setFace(gesture);
+        setLine(faceLine(gesture));
+        clearTimeout(lineTimer);
+        clearTimeout(faceTimer);
+        const hold = gesture === "error" ? 3400 : gesture === "idle" ? 900 : 4800;
+        faceTimer = setTimeout(() => {
+          if (!cancelled) setFace(null);
+        }, hold);
+        lineTimer = setTimeout(() => {
+          if (!cancelled) setLine(null);
+        }, hold);
       } catch (e) {
         console.warn("[guide] bad event", e);
       }
@@ -236,9 +331,11 @@ export function useGuide(api: GuideApi, sid: string) {
     return () => {
       cancelled = true;
       clearTimeout(hideTimer);
+      clearTimeout(lineTimer);
+      clearTimeout(faceTimer);
       es.close();
     };
   }, [sid]);
 
-  return { cursor, busy, linked };
+  return { cursor, busy, linked, line, face };
 }

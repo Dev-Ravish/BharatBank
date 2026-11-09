@@ -14,7 +14,7 @@ export default function AppShell({
   onBack?: () => void;
 }) {
   return (
-    <div className="mx-auto min-h-screen max-w-md bg-slate-50 pb-24 dark:bg-slate-950">
+    <div className="mx-auto min-h-screen max-w-md bg-slate-50 pb-36 dark:bg-slate-950">
       {title && <PageHeader title={title} backHref={backHref} onBack={onBack} />}
       {children}
       <BottomNav />

@@ -37,6 +37,9 @@ expect("confirm flags mpin", confirm.ok === true && confirm.stepUp === true);
 const where = plan({ action: "where", target: "none", value: "none" }, home);
 expect("where", where.ok === true && where.steps.length === 0);
 
+const face = plan({ action: "gesture", target: "none", value: "none" }, home);
+expect("gesture action", face.ok === true && face.steps.length === 0);
+
 const missing = plan({ action: "open", target: "not-a-screen", value: "none" }, home);
 expect("unknown screen", missing.ok === false);
 

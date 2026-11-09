@@ -25,15 +25,18 @@ const base = (process.argv[2] ?? "https://YOUR-PUBLIC-URL").replace(/\/+$/, "");
 const tool = {
   name: "ui_action",
   description:
-    "Operates the Bharat Bank app on the customer's screen so they can see what you are doing. " +
-    "Use it to open a screen, fill a form, press a button, point at something, or read what is on screen. " +
-    "Say one short sentence first, then call this, then describe the result. " +
+    "Operates the Bharat Bank app on the customer's screen so they can see what you are doing, and sets the face of the Saarthi robot head. " +
+    "Use it to open a screen, fill a form, press a button, point at something, read what is on screen, or change only the robot's expression. " +
+    "Say one short sentence first, then call this, then describe the result. Never say the gesture name aloud. " +
     "Actions: open (target = screen id such as transfer, upi, bills, fd, loans, home, profile; value = none OR settings like amount=500; beneficiary=Rahul; method=NEFT; press=review-transfer), " +
     "set (target = field id; value = the value), " +
     "press (target = button id; value = none, or a name/amount when several rows match), " +
     "highlight (target = control id; value = none), " +
-    "where (target = none; value = none) to read the live screen. " +
-    "ALL FOUR parameters are required. Pass the word none when a parameter does not apply. " +
+    "where (target = none; value = none) to read the live screen, " +
+    "gesture (target = none; value = none) to change only the robot face. " +
+    "gesture is idle, thinking, searching, listening, speaking, working, happy, error, sleeping, or none. " +
+    "Pass none to let a screen action choose the face. Use happy when a receipt or success is visible, error when you cannot do the request, thinking while you decide, searching while you look something up, listening while you wait for them. " +
+    "ALL FIVE parameters are required. Pass the word none when a parameter does not apply. " +
     "For session ALWAYS pass the session code from your prompt (session_id), exactly, every call. Never say it aloud. " +
     "Never put a PIN, password, OTP, PAN, or Aadhaar in any parameter. Money actions that need an MPIN will say so in the result; the customer types the MPIN.",
   pre_call_message: "One moment, I'll show you on the screen.",
@@ -57,8 +60,13 @@ const tool = {
         type: "string",
         description: "The session code from your prompt (session_id). Copy it exactly every call. Never say it aloud.",
       },
+      gesture: {
+        type: "string",
+        description:
+          "How the Saarthi robot should look. One of idle, thinking, searching, listening, speaking, working, happy, error, sleeping, or none. none lets a screen action choose. Never say this word aloud.",
+      },
     },
-    required: ["action", "target", "value", "session"],
+    required: ["action", "target", "value", "session", "gesture"],
   },
   key: "custom_task",
   value: {
@@ -70,6 +78,7 @@ const tool = {
       target: "%(target)s",
       value: "%(value)s",
       session: "%(session)s",
+      gesture: "%(gesture)s",
     },
     headers: {},
   },

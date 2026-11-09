@@ -24,7 +24,8 @@
     "@capacitor/ios": "^8.5.3",
     "next": "16.4.3",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "robot-heads": "^0.3.0"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",

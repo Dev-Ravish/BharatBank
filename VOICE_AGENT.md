@@ -35,6 +35,8 @@ If port 3000 is already taken, start Next on another port and point the tunnel a
 7. Bolna → the Bharat agent → Tools → Custom function → paste all of `BOLNA_UI_TOOL.json`.
 8. Save the agent. Copy its id into `BOLNA_AGENT_ID` and restart the dev server.
 
+The tool now takes a fifth parameter, `gesture`. Paste both the new prompt and the new tool JSON into the existing Bharat agent so Saarthi's face can be set from the call. Until that paste, screen actions still move the face on their own: opening and pointing look around, filling and pressing look busy, and a failed tool looks worried.
+
 The tunnel hostname changes every time cloudflared restarts. Re-run `npm run tool -- https://…` and paste the JSON again.
 
 `BOLNA_UI_TOOL.json` contains the webhook secret. It is git-ignored. Do not commit it.
