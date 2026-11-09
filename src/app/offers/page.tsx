@@ -28,7 +28,7 @@ export default function OffersPage() {
           Educational demo only — illustrative offers, no real promotions or redemptions.
         </p>
 
-        <div className="rounded-xl bg-gradient-to-br from-[#0b1b33] to-[#13294d] p-4 text-white" data-guide="rewards">
+        <div className="rounded-xl bg-gradient-to-br from-[#4a1527] to-[#651d35] p-4 text-white" data-guide="rewards">
           <p className="text-xs text-slate-300">Your rewards</p>
           <p className="mt-1 text-3xl font-semibold">{rewards ? rewards.points.toLocaleString("en-IN") : "..."} pts</p>
           <p className="mt-1 text-xs text-slate-400">

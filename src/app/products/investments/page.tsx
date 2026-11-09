@@ -56,7 +56,7 @@ export default function InvestmentsPage() {
               />
             </div>
           </div>
-          <div className="mt-3 rounded-lg bg-teal-50 p-3 text-sm text-teal-800 dark:bg-teal-900/30 dark:text-teal-200">
+          <div className="mt-3 rounded-lg bg-amber-100 p-3 text-sm text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
             Estimated value: ₹{futureValue.toLocaleString("en-IN", { maximumFractionDigits: 0 })}
           </div>
         </div>

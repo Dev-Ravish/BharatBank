@@ -4,7 +4,7 @@
 
 :root {
   --background: #f5f7fa;
-  --foreground: #0b1b33;
+  --foreground: #4a1527;
 }
 
 @theme inline {
@@ -58,10 +58,10 @@ body {
   margin: 0;
   padding: 8px 12px 10px;
   background: #fff;
-  color: #4a1630;
-  border: 1px solid #fbcfe8;
+  color: #4a1527;
+  border: 1px solid #fde68a;
   border-radius: 16px 16px 6px 16px;
-  box-shadow: 0 10px 24px rgba(136, 19, 55, 0.16);
+  box-shadow: 0 10px 24px rgba(74, 21, 39, 0.16);
   font-size: 13.5px;
   font-weight: 600;
   line-height: 1.35;
@@ -74,7 +74,7 @@ body {
   margin-bottom: 2px;
   font-size: 11px;
   font-weight: 800;
-  color: #be185d;
+  color: #a16207;
 }
 .mascot-bubble::after {
   content: "";
@@ -86,13 +86,13 @@ body {
   border-color: #fff transparent transparent;
 }
 .dark .mascot-bubble {
-  background: #3b1024;
-  color: #ffe4ef;
-  border-color: #9d174d;
+  background: #2a0e18;
+  color: #f8e9d8;
+  border-color: #92400e;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
-.dark .mascot-name { color: #fda4af; }
-.dark .mascot-bubble::after { border-top-color: #3b1024; }
+.dark .mascot-name { color: #fbbf24; }
+.dark .mascot-bubble::after { border-top-color: #2a0e18; }
 .mascot-dock.at-top .mascot-bubble {
   bottom: auto;
   top: calc(100% + 8px);
@@ -104,16 +104,16 @@ body {
   border-width: 0 7px 8px;
   border-color: transparent transparent #fff;
 }
-.dark .mascot-dock.at-top .mascot-bubble::after { border-bottom-color: #3b1024; }
+.dark .mascot-dock.at-top .mascot-bubble::after { border-bottom-color: #2a0e18; }
 .mascot-error {
   position: absolute;
   right: 0;
   bottom: calc(100% + 8px);
   z-index: 5;
   width: min(260px, 78vw);
-  background: #3b0d17;
-  border: 1px solid #f43f5e;
-  color: #fecdd3;
+  background: #3a0d12;
+  border: 1px solid #ef4444;
+  color: #fecaca;
   padding: 10px 12px;
   border-radius: 14px;
   font-size: 13px;
@@ -172,17 +172,17 @@ body {
   padding: 3px 8px 3px 6px;
   border-radius: 999px;
   background: #fff;
-  color: #9d174d;
+  color: #92400e;
   font-size: 11px;
   font-weight: 700;
   line-height: 1.2;
   white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(74, 22, 48, 0.16);
+  box-shadow: 0 4px 12px rgba(74, 21, 39, 0.16);
   pointer-events: none;
 }
 .dark .mascot-hint {
-  background: #3b1024;
-  color: #ffe4ef;
+  background: #2a0e18;
+  color: #fbbf24;
 }
 .mascot-mute {
   position: absolute;
@@ -192,30 +192,30 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 1px solid #fbcfe8;
+  border: 1px solid #fde68a;
   background: #fff;
-  color: #9d174d;
+  color: #4a1527;
   display: grid;
   place-items: center;
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(136, 19, 55, 0.18);
+  box-shadow: 0 6px 14px rgba(74, 21, 39, 0.18);
   touch-action: manipulation;
 }
 .mascot-mute[aria-pressed="true"] {
-  background: #9d174d;
-  color: #fff7fb;
-  border-color: #9d174d;
+  background: #4a1527;
+  color: #fff;
+  border-color: #4a1527;
 }
 .dark .mascot-mute {
-  background: #3b1024;
-  color: #ffe4ef;
-  border-color: #9d174d;
+  background: #2a0e18;
+  color: #f8e9d8;
+  border-color: #92400e;
 }
 .dark .mascot-mute[aria-pressed="true"] {
-  background: #be185d;
+  background: #a16207;
   color: #fff;
 }
-.link-dot { width: 9px; height: 9px; border-radius: 50%; background: #9d174d; flex: none; opacity: 0.35; }
+.link-dot { width: 9px; height: 9px; border-radius: 50%; background: #4a1527; flex: none; opacity: 0.35; }
 .link-dot.on { background: #16a34a; opacity: 1; box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2); }
 @keyframes mascotSay {
   from { opacity: 0; transform: translateY(8px) scale(0.98); }
@@ -243,8 +243,8 @@ body {
   left: 18px;
   top: 18px;
   font-size: 11px;
-  color: #fff7fb;
-  background: #9d174d;
+  color: #fff;
+  background: #4a1527;
   padding: 2px 8px;
   border-radius: 99px;
   white-space: nowrap;
@@ -256,12 +256,12 @@ body {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 3px solid #fb7185;
+  border: 3px solid #eab308;
   animation: gcRing 0.5s ease-out forwards;
 }
 @keyframes gcRing { from { transform: scale(0.4); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
 .ui-glow { border-radius: 12px; animation: uiGlow 1.6s ease-out; }
 @keyframes uiGlow {
-  0%, 60% { box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.9), 0 8px 18px rgba(157, 23, 77, 0.28); }
-  100% { box-shadow: 0 0 0 0 rgba(244, 114, 182, 0); }
+  0%, 60% { box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.9), 0 8px 18px rgba(74, 21, 39, 0.28); }
+  100% { box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
 }

@@ -57,7 +57,7 @@ export default function AccountDetailsPage() {
         <Link
           href="/account/statement"
           data-guide="go-statement"
-          className="block rounded-xl bg-[#0b1b33] py-3 text-center text-sm font-medium text-white"
+          className="block rounded-xl bg-[#4a1527] py-3 text-center text-sm font-medium text-white"
         >
           View statement
         </Link>

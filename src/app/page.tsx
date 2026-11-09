@@ -1,12 +1,13 @@
 import Link from "next/link";
 import PublicNav from "@/components/PublicNav";
+import { Icon } from "@/components/icons";
 
 const PROMO_TILES = [
-  { title: "UPI Payments", blurb: "Pay any UPI ID, mobile number, or scan a QR code instantly.", icon: "▣" },
-  { title: "Fixed & Recurring Deposits", blurb: "Grow savings with quarterly-compounded interest.", icon: "₹" },
-  { title: "Cards", blurb: "Debit and credit cards you can freeze or unfreeze instantly.", icon: "▭" },
-  { title: "Loans", blurb: "Personal, home, car, education, and gold loans with live EMI calculators.", icon: "🏦" },
-];
+  { title: "UPI Payments", blurb: "Pay any UPI ID, mobile number, or scan a QR code instantly.", icon: "scan" },
+  { title: "Fixed & Recurring Deposits", blurb: "Grow savings with quarterly-compounded interest.", icon: "rupee" },
+  { title: "Cards", blurb: "Debit and credit cards you can freeze or unfreeze instantly.", icon: "card" },
+  { title: "Loans", blurb: "Personal, home, car, education, and gold loans with live EMI calculators.", icon: "bank" },
+] as const;
 
 function CardStack() {
   return (
@@ -26,8 +27,8 @@ function CardStack() {
         </text>
       </g>
       <g transform="rotate(5 160 90)">
-        <rect x="75" y="30" width="200" height="120" rx="14" fill="#0b1b33" />
-        <rect x="91" y="52" width="26" height="18" rx="4" fill="#2dd4bf" />
+        <rect x="75" y="30" width="200" height="120" rx="14" fill="#4a1527" />
+        <rect x="91" y="52" width="26" height="18" rx="4" fill="#eab308" />
         <text x="91" y="118" fill="#cbd5e1" fontSize="14" fontFamily="monospace">
           •••• •••• •••• 4582
         </text>
@@ -44,7 +45,7 @@ export default function LandingPage() {
     <main className="min-h-screen bg-white dark:bg-slate-950">
       <PublicNav />
 
-      <section className="bg-[#0b1b33]">
+      <section className="bg-[#4a1527]">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 px-4 py-16 md:flex-row md:py-24">
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-4xl font-semibold leading-tight text-white md:text-5xl">
@@ -60,7 +61,7 @@ export default function LandingPage() {
               <Link
                 href="/register"
                 data-guide="go-register"
-                className="rounded-full bg-teal-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-teal-300"
+                className="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-amber-300"
               >
                 Create account
               </Link>
@@ -86,8 +87,8 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
           {PROMO_TILES.map((tile) => (
             <div key={tile.title} className="rounded-2xl border border-slate-200 p-6 text-center dark:border-slate-800">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-teal-50 text-xl dark:bg-teal-900/30">
-                {tile.icon}
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+                <Icon name={tile.icon} />
               </div>
               <h3 className="font-medium text-slate-900 dark:text-white">{tile.title}</h3>
               <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">{tile.blurb}</p>

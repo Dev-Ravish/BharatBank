@@ -116,7 +116,7 @@ export default function RegisterPage() {
               />
             </div>
             {error && <p className="text-sm text-red-600">{error}</p>}
-            <button disabled={loading} className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white disabled:opacity-50">
+            <button disabled={loading} className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white disabled:opacity-50">
               {loading ? "Sending..." : "Send OTP"}
             </button>
           </form>
@@ -137,7 +137,7 @@ export default function RegisterPage() {
               />
             </div>
             {error && <p className="text-sm text-red-600">{error}</p>}
-            <button className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white">Verify</button>
+            <button className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white">Verify</button>
           </form>
         )}
 
@@ -183,7 +183,7 @@ export default function RegisterPage() {
               />
             </div>
             {error && <p className="text-sm text-red-600">{error}</p>}
-            <button className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white">Continue</button>
+            <button className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white">Continue</button>
           </form>
         )}
 
@@ -212,7 +212,7 @@ export default function RegisterPage() {
               />
             </div>
             {error && <p className="text-sm text-red-600">{error}</p>}
-            <button disabled={loading} className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white disabled:opacity-50">
+            <button disabled={loading} className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white disabled:opacity-50">
               {loading ? "Creating account..." : "Create account"}
             </button>
           </form>

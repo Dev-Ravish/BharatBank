@@ -181,14 +181,14 @@ export default function LoansPage() {
           <button
             data-guide="loans-tab"
             onClick={() => setView("loans")}
-            className={`flex-1 rounded-lg py-2 text-xs font-medium ${view === "loans" ? "bg-[#0b1b33] text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"}`}
+            className={`flex-1 rounded-lg py-2 text-xs font-medium ${view === "loans" ? "bg-[#4a1527] text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"}`}
           >
             My loans
           </button>
           <button
             data-guide="apply-tab"
             onClick={() => setView("apply")}
-            className={`flex-1 rounded-lg py-2 text-xs font-medium ${view === "apply" ? "bg-[#0b1b33] text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"}`}
+            className={`flex-1 rounded-lg py-2 text-xs font-medium ${view === "apply" ? "bg-[#4a1527] text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"}`}
           >
             Apply for a loan
           </button>
@@ -236,10 +236,10 @@ export default function LoansPage() {
                 onChange={(e) => setTenureMonths(e.target.value)}
               />
             </div>
-            <div className="rounded-lg bg-teal-50 p-3 text-sm text-teal-800 dark:bg-teal-900/30 dark:text-teal-200">
+            <div className="rounded-lg bg-amber-100 p-3 text-sm text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">
               Estimated EMI: ₹{inr(estimatedEmi)}/month
             </div>
-            <button type="submit" data-guide="loan-apply" className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white">
+            <button type="submit" data-guide="loan-apply" className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white">
               Check eligibility & apply
             </button>
 
@@ -333,7 +333,7 @@ export default function LoansPage() {
                         data-guide="loan-pay-emi"
                         data-guide-label={loan.productName}
                         onClick={() => handlePayEmi(loan.id)}
-                        className="flex-1 rounded-lg bg-[#0b1b33] py-2 text-xs font-medium text-white"
+                        className="flex-1 rounded-lg bg-[#4a1527] py-2 text-xs font-medium text-white"
                       >
                         Pay EMI
                       </button>

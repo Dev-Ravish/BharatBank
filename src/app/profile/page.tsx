@@ -22,7 +22,9 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState<Profile | null>(null);
 
   useEffect(() => {
-    fetch("/api/account").then((r) => r.json()).then(setProfile);
+    fetch("/api/account")
+      .then((r) => (r.ok ? r.json() : null))
+      .then(setProfile);
   }, []);
 
   async function handleLogout() {
@@ -36,7 +38,7 @@ export default function ProfilePage() {
         {profile && (
           <div className="rounded-xl bg-white p-5 shadow-sm dark:bg-slate-800" data-guide="profile-card">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#0b1b33] text-lg font-semibold text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#4a1527] text-lg font-semibold text-white">
                 {profile.name[0]}
               </div>
               <div>

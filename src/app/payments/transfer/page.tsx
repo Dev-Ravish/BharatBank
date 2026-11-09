@@ -114,7 +114,7 @@ export default function TransferPage() {
               setRemarks("");
             }}
             data-guide="new-transfer"
-            className="mt-4 w-full rounded-xl bg-[#0b1b33] py-3 text-sm font-medium text-white"
+            className="mt-4 w-full rounded-xl bg-[#4a1527] py-3 text-sm font-medium text-white"
           >
             New transfer
           </button>
@@ -152,7 +152,7 @@ export default function TransferPage() {
             onClick={submitTransfer}
             disabled={loading}
             data-guide="confirm-transfer"
-            className="w-full rounded-xl bg-[#0b1b33] py-3 text-sm font-medium text-white disabled:opacity-50"
+            className="w-full rounded-xl bg-[#4a1527] py-3 text-sm font-medium text-white disabled:opacity-50"
           >
             {loading ? "Processing..." : "Confirm & authorize"}
           </button>
@@ -182,7 +182,7 @@ export default function TransferPage() {
                 data-guide={`method-${m.toLowerCase()}`}
                 onClick={() => setMethod(m)}
                 className={`rounded-lg py-2 text-xs font-medium ${
-                  method === m ? "bg-[#0b1b33] text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"
+                  method === m ? "bg-[#4a1527] text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"
                 }`}
               >
                 {m}
@@ -231,7 +231,7 @@ export default function TransferPage() {
 
         {error && <p className="text-sm text-red-600">{error}</p>}
 
-        <button type="submit" data-guide="review-transfer" className="w-full rounded-xl bg-[#0b1b33] py-3 text-sm font-medium text-white">
+        <button type="submit" data-guide="review-transfer" className="w-full rounded-xl bg-[#4a1527] py-3 text-sm font-medium text-white">
           Review transfer
         </button>
       </form>

@@ -73,7 +73,7 @@ export default function BeneficiariesPage() {
         <button
           onClick={() => setShowForm((v) => !v)}
           data-guide="add-beneficiary"
-          className="w-full rounded-xl bg-[#0b1b33] py-3 text-sm font-medium text-white"
+          className="w-full rounded-xl bg-[#4a1527] py-3 text-sm font-medium text-white"
         >
           {showForm ? "Cancel" : "+ Add beneficiary"}
         </button>
@@ -123,7 +123,7 @@ export default function BeneficiariesPage() {
               type="submit"
               data-guide="save-beneficiary"
               disabled={loading}
-              className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white disabled:opacity-50"
+              className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white disabled:opacity-50"
             >
               {loading ? "Adding..." : "Add beneficiary"}
             </button>

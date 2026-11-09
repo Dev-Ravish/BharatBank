@@ -124,7 +124,7 @@ export default function RecurringDepositsPage() {
         <button
           onClick={() => setShowForm((v) => !v)}
           data-guide="open-rd-form"
-          className="w-full rounded-xl bg-[#0b1b33] py-3 text-sm font-medium text-white"
+          className="w-full rounded-xl bg-[#4a1527] py-3 text-sm font-medium text-white"
         >
           {showForm ? "Cancel" : "+ Open new RD"}
         </button>
@@ -158,7 +158,7 @@ export default function RecurringDepositsPage() {
               type="submit"
               data-guide="submit-rd"
               disabled={loading}
-              className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white disabled:opacity-50"
+              className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white disabled:opacity-50"
             >
               {loading ? "Opening..." : "Open RD"}
             </button>

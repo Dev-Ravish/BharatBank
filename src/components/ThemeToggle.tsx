@@ -27,7 +27,7 @@ export default function ThemeToggle() {
     >
       <span>Dark mode</span>
       <span
-        className={`relative h-6 w-11 rounded-full transition ${dark ? "bg-teal-500" : "bg-slate-300"}`}
+        className={`relative h-6 w-11 rounded-full transition ${dark ? "bg-amber-500" : "bg-slate-300"}`}
       >
         <span
           className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition ${dark ? "left-5" : "left-0.5"}`}

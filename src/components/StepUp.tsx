@@ -51,7 +51,7 @@ export function useStepUp() {
           autoFocus
           data-guide="step-up-mpin"
           data-secret="true"
-          className="mt-4 w-full rounded-lg border border-slate-300 px-3 py-2 text-center text-lg tracking-[0.5em] outline-none focus:border-teal-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
+          className="mt-4 w-full rounded-lg border border-slate-300 px-3 py-2 text-center text-lg tracking-[0.5em] outline-none focus:border-amber-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100"
           value={mpin}
           onChange={(e) => setMpin(e.target.value.replace(/\D/g, ""))}
         />
@@ -69,7 +69,7 @@ export function useStepUp() {
             data-guide="step-up-confirm"
             data-secret="true"
             disabled={mpin.length !== 6 || loading}
-            className="flex-1 rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white disabled:opacity-50"
+            className="flex-1 rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white disabled:opacity-50"
           >
             {loading ? "Checking..." : "Confirm"}
           </button>

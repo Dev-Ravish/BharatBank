@@ -68,7 +68,7 @@ export default function StatementPage() {
                 data-guide={`statement-${t}`}
                 onClick={() => setType(t)}
                 className={`flex-1 rounded-lg py-1.5 text-xs font-medium capitalize ${
-                  type === t ? "bg-[#0b1b33] text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"
+                  type === t ? "bg-[#4a1527] text-white" : "bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300"
                 }`}
               >
                 {t}

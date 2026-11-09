@@ -154,7 +154,7 @@ export default function BillsPage() {
             type="submit"
             data-guide="pay-bill"
             disabled={loading}
-            className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white disabled:opacity-50"
+            className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white disabled:opacity-50"
           >
             {loading ? "Processing..." : scheduledFor ? "Schedule payment" : "Pay now"}
           </button>

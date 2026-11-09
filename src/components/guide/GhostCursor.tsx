@@ -11,7 +11,7 @@ export default function GhostCursor({ cursor }: { cursor: CursorState }) {
     >
       <span key={cursor.click} className={cursor.click ? "gc-ring" : ""} />
       <svg width="26" height="26" viewBox="0 0 24 24">
-        <path d="M4 2l15 9-6.5 1.6L9.8 19z" fill="#fff7fb" stroke="#9d174d" strokeWidth="1.8" strokeLinejoin="round" />
+        <path d="M4 2l15 9-6.5 1.6L9.8 19z" fill="#fff" stroke="#4a1527" strokeWidth="1.8" strokeLinejoin="round" />
       </svg>
       <b>Saarthi</b>
     </div>

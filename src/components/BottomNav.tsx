@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Icon } from "./icons";
 
 const TABS = [
-  { href: "/dashboard", label: "Home", icon: "⌂" },
-  { href: "/payments", label: "Payments", icon: "↗" },
-  { href: "/products", label: "Products", icon: "▦" },
-  { href: "/profile", label: "Profile", icon: "☺" },
-];
+  { href: "/dashboard", label: "Home", icon: "home" },
+  { href: "/payments", label: "Payments", icon: "arrowUpRight" },
+  { href: "/products", label: "Products", icon: "grid" },
+  { href: "/profile", label: "Profile", icon: "user" },
+] as const;
 
 export default function BottomNav() {
   const pathname = usePathname();
@@ -26,10 +27,10 @@ export default function BottomNav() {
             href={tab.href}
             data-guide={`tab-${tab.label.toLowerCase()}`}
             className={`flex flex-1 flex-col items-center gap-0.5 py-2.5 text-[11px] ${
-              active ? "text-teal-600 dark:text-teal-400" : "text-slate-500 dark:text-slate-400"
+              active ? "text-amber-700 dark:text-amber-400" : "text-slate-500 dark:text-slate-400"
             }`}
           >
-            <span className="text-lg leading-none">{tab.icon}</span>
+            <Icon name={tab.icon} className="h-5 w-5" />
             {tab.label}
           </Link>
         );

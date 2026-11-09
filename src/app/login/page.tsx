@@ -71,7 +71,7 @@ export default function LoginPage() {
               <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Mobile number</label>
               <input
                 data-guide="login-mobile"
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-teal-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-amber-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value.replace(/\D/g, "").slice(0, 10))}
                 inputMode="numeric"
@@ -85,7 +85,7 @@ export default function LoginPage() {
                 data-secret="true"
                 inputMode="numeric"
                 maxLength={6}
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm tracking-widest outline-none focus:border-teal-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm tracking-widest outline-none focus:border-amber-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                 value={mpin}
                 onChange={(e) => setMpin(e.target.value.replace(/\D/g, ""))}
               />
@@ -95,7 +95,7 @@ export default function LoginPage() {
               type="submit"
               data-guide="login-submit"
               disabled={loading}
-              className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white transition hover:bg-slate-700 disabled:opacity-50"
+              className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white transition hover:bg-[#651d35] disabled:opacity-50"
             >
               {loading ? "Signing in..." : "Sign in"}
             </button>
@@ -105,7 +105,7 @@ export default function LoginPage() {
             <div>
               <label className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-300">Username</label>
               <input
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-teal-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-amber-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -115,7 +115,7 @@ export default function LoginPage() {
               <input
                 type="password"
                 data-secret="true"
-                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-teal-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
+                className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-amber-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
@@ -124,7 +124,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-lg bg-[#0b1b33] py-2 text-sm font-medium text-white transition hover:bg-slate-700 disabled:opacity-50"
+              className="w-full rounded-lg bg-[#4a1527] py-2 text-sm font-medium text-white transition hover:bg-[#651d35] disabled:opacity-50"
             >
               {loading ? "Signing in..." : "Sign in"}
             </button>
@@ -141,7 +141,7 @@ export default function LoginPage() {
 
         <p className="mt-4 text-center text-sm text-slate-500 dark:text-slate-400">
           New here?{" "}
-          <Link href="/register" data-guide="go-register" className="text-teal-600 dark:text-teal-400">
+          <Link href="/register" data-guide="go-register" className="text-amber-700 dark:text-amber-400">
             Create an account
           </Link>
         </p>

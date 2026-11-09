@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import AppShell from "@/components/AppShell";
+import { Icon } from "@/components/icons";
 
 type Account = {
   name: string;
@@ -16,15 +17,15 @@ type Transaction = { id: string; date: string; description: string; amount: numb
 type Notification = { id: string; title: string; body: string; date: string; read: boolean };
 
 const QUICK_ACTIONS = [
-  { href: "/payments/transfer", label: "Transfer", icon: "↗", guide: "qa-transfer" },
-  { href: "/payments/upi", label: "Scan & Pay", icon: "▣", guide: "qa-upi" },
-  { href: "/payments/bills", label: "Bill Pay", icon: "⚡", guide: "qa-bills" },
-  { href: "/products/cards", label: "Cards", icon: "▭", guide: "qa-cards" },
-  { href: "/products/fd", label: "Deposits", icon: "₹", guide: "qa-deposits" },
-  { href: "/products/loans", label: "Loans", icon: "🏦", guide: "qa-loans" },
-  { href: "/products/investments", label: "Investments", icon: "📈", guide: "qa-investments" },
-  { href: "/offers", label: "Offers & Rewards", icon: "★", guide: "qa-offers" },
-];
+  { href: "/payments/transfer", label: "Transfer", icon: "arrowUpRight", guide: "qa-transfer" },
+  { href: "/payments/upi", label: "Scan & Pay", icon: "scan", guide: "qa-upi" },
+  { href: "/payments/bills", label: "Bill Pay", icon: "bolt", guide: "qa-bills" },
+  { href: "/products/cards", label: "Cards", icon: "card", guide: "qa-cards" },
+  { href: "/products/fd", label: "Deposits", icon: "rupee", guide: "qa-deposits" },
+  { href: "/products/loans", label: "Loans", icon: "bank", guide: "qa-loans" },
+  { href: "/products/investments", label: "Investments", icon: "chart", guide: "qa-investments" },
+  { href: "/offers", label: "Offers & Rewards", icon: "star", guide: "qa-offers" },
+] as const;
 
 const inr = (n: number) => n.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -55,7 +56,7 @@ export default function DashboardPage() {
     <AppShell>
       <header className="flex items-center justify-between px-4 pt-5">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0b1b33] text-sm font-semibold text-white">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#4a1527] text-sm font-semibold text-white">
             {account?.name?.[0] ?? "D"}
           </div>
           <div>
@@ -67,9 +68,9 @@ export default function DashboardPage() {
           <button
             onClick={() => setShowNotifications((v) => !v)}
             data-guide="notifications"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg shadow-sm dark:bg-slate-800"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full bg-white text-slate-600 shadow-sm dark:bg-slate-800 dark:text-slate-300"
           >
-            🔔
+            <Icon name="bell" />
             {unread > 0 && (
               <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-red-500" />
             )}
@@ -92,7 +93,7 @@ export default function DashboardPage() {
 
       <div className="px-4 pt-4">
         {account && (
-          <div className="rounded-2xl bg-gradient-to-br from-[#0b1b33] to-[#13294d] p-6 text-white" data-guide="balance">
+          <div className="rounded-2xl bg-gradient-to-br from-[#4a1527] to-[#651d35] p-6 text-white" data-guide="balance">
             <div className="flex items-center justify-between">
               <p className="text-xs text-slate-300">{account.accountType} Account</p>
               <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px]">{account.branch}</span>
@@ -103,7 +104,7 @@ export default function DashboardPage() {
             <div className="mt-4 flex items-center gap-2">
               <p className="text-3xl font-semibold">{showBalance ? `₹${inr(account.balance)}` : "₹ •••••••"}</p>
               <button onClick={() => setShowBalance((v) => !v)} data-guide="balance-toggle" className="text-slate-300">
-                {showBalance ? "🙈" : "👁"}
+                <Icon name={showBalance ? "eyeOff" : "eye"} />
               </button>
             </div>
           </div>
@@ -117,7 +118,9 @@ export default function DashboardPage() {
               data-guide={action.guide}
               className="flex flex-col items-center gap-1.5 rounded-xl bg-white p-3 text-center shadow-sm dark:bg-slate-800"
             >
-              <span className="text-xl">{action.icon}</span>
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">
+                <Icon name={action.icon} className="h-4 w-4" />
+              </span>
               <span className="text-[10px] leading-tight text-slate-600 dark:text-slate-300">{action.label}</span>
             </Link>
           ))}
@@ -125,7 +128,7 @@ export default function DashboardPage() {
 
         <div className="mt-6 flex items-center justify-between">
           <h2 className="text-sm font-medium text-slate-700 dark:text-slate-300">Recent transactions</h2>
-          <Link href="/account/statement" className="text-xs text-teal-600 dark:text-teal-400">
+          <Link href="/account/statement" className="text-xs text-amber-700 dark:text-amber-400">
             View all
           </Link>
         </div>
